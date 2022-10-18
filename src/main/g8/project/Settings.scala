@@ -10,35 +10,35 @@ object Settings {
     version := "$version$" + sys.props.getOrElse("buildNumber", default="0-SNAPSHOT"),
     scalaVersion := "$scala_version$",
     publishMavenStyle := true,
-    publishArtifact in Test := false
+    Test / publishArtifact := false
   )
 
   lazy val testSettings = Seq(
-    fork in Test := false,
-    parallelExecution in Test := false
+    Test / fork := false,
+    Test / parallelExecution := false
   )
 
   lazy val itSettings = Defaults.itSettings ++ Seq(
-    logBuffered in IntegrationTest := false,
-    fork in IntegrationTest := true
+    IntegrationTest / logBuffered := false,
+    IntegrationTest / fork := true
   )
 
-  lazy val $appname$Settings = Seq(
-    assemblyJarName in assembly := "$appname$-" + version.value + ".jar",
-    test in assembly := {},
-    target in assembly := file(baseDirectory.value + "/../bin/"),
-    assemblyOption in assembly := (assemblyOption in assembly).value.copy(
+  lazy val $appname;format="word-space,start-case,lowercase,word-only"$Settings = Seq(
+    assembly / assemblyJarName := "$appname$-" + version.value + ".jar",
+    assembly / test := {},
+    assembly / target := file(baseDirectory.value + "/../bin/"),
+    assembly / assemblyOption := (assembly / assemblyOption).value.copy(
       includeScala = false,
       includeDependency=true),
-    assemblyMergeStrategy in assembly := {
+    assembly / assemblyMergeStrategy := {
       case PathList("META-INF", xs@_*) => MergeStrategy.discard
       case n if n.startsWith("reference.conf") => MergeStrategy.concat
       case _ => MergeStrategy.first
     }
   )
 
-  lazy val $module1$Settings = Seq()
+  lazy val $module1;format="word-space,start-case,lowercase,word-only"$Settings = Seq()
 
-  lazy val $module2$Settings = Seq()
+  lazy val $module2;format="word-space,start-case,lowercase,word-only"$Settings = Seq()
 
 }

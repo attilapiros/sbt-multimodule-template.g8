@@ -6,7 +6,7 @@ An assembly plugin is referenced for building uber-jar of the application.
 
 ## Usage
 
-```sbt new lewismj/sbt-template.g8```
+```sbt new attilapiros/sbt-multimodule-template.g8```
 
 You can then run:
 
